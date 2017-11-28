@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>smartHome</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+      <ion-label>Kitchen light</ion-label>
+      <ion-toggle id="lightSlider1" (ionChange)="ChangeLight1()" checked="false"></ion-toggle>
+  </ion-item>
+  <ion-item>
+        <ion-range min="10" max="100" step="10" snaps="true" [(ngModel)]="brightness1" (ionChange)="AdjustBrightness1(brightness1)">
+           <ion-icon small range-left name="sunny"></ion-icon>
+          <ion-icon range-right name="sunny"></ion-icon>
+        </ion-range> 
+  </ion-item>
+  <ion-item>
+      <ion-label>Bathroom light</ion-label>
+      <ion-toggle id="lightSlider2" (ionChange)="ChangeLight2()" checked="false"></ion-toggle>
+  </ion-item>
+  <ion-item>
+        <ion-range min="10" max="100" step="10" snaps="true" [(ngModel)]="brightness2" (ionChange)="AdjustBrightness2(brightness2)">
+           <ion-icon small range-left name="sunny"></ion-icon>
+          <ion-icon range-right name="sunny"></ion-icon>
+        </ion-range> 
+  </ion-item>
+      <button ion-item (click)='DoThething()'> 
+      <ion-icon name="camera"></ion-icon>
+      click here to take a picture 
+      </button>
+      <h1 id="temp"></h1>
+      <img id="cameraImg">
+</ion-content>
+
