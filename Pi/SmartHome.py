@@ -2,6 +2,7 @@ import firebase_admin
 import os
 import time
 import datetime
+import json
 import RPi.GPIO as GPIO
 from firebase import firebase
 from firebase_admin import credentials
@@ -13,7 +14,6 @@ from google.cloud import storage
 
 #enable google cloud Storage & ref to an existing bucket
 bucket = storage.Client().get_bucket('smarthome-6b170.appspot.com')
-#bucket = storage.Client().get_bucket('smarthome-6b170.appspot.com/Doorbell')
 
 camera = PiCamera()
 camera.resolution = (500,500)
@@ -46,12 +46,13 @@ GPIO.setup(12, GPIO.OUT)
 t=GPIO.PWM(12, 100)
 t.start(0)
 
-
+ImageMeta = db.reference().child('ImageMeta')
+alertUpdate = db.reference().child('Alert')
 
 def light1():
     while True:
         Light1 = db.reference('Lights/Light1').get()
-                         
+        
         if(Light1['on'] == "true"):
             p.ChangeDutyCycle(Light1['freq'])
         elif(Light1['on'] == "false"):
@@ -76,11 +77,11 @@ def light1():
             camera.stop_preview()
             
             #upload local file to online bucket
-            blob = bucket.blob(Date_Time + '.jpg')
-            #of = open(Date_Time + '.jpg', 'rb')
-            #blob.upload_from_file(of)
+            blob = bucket.blob("Doorbell/"+Date_Time + '.jpg')
             blob.upload_from_filename(filename=Date_Time + '.jpg')
-            
+
+            ImageMeta.push().set(Date_Time + '.jpg')
+            alertUpdate.set({"on" : "true"})
              
         time.sleep(0.2)
 
