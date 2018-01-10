@@ -13,7 +13,6 @@ from threading import Thread
 from picamera import PiCamera
 from google.cloud import storage
 
-
 #enable google cloud Storage & ref to an existing bucket
 bucket = storage.Client().get_bucket('smarthome-6b170.appspot.com')
 
@@ -22,7 +21,6 @@ camera.resolution = (500,500)
 
 #music player
 pygame.mixer.init()
-
 
 
 #function to calculate cpu_temperature
@@ -58,6 +56,7 @@ alertUpdate = db.reference().child('Alert')
 
 def light1():
     while True:
+        #lights
         Light1 = db.reference('Lights/Light1').get()
         
         if(Light1['on'] == "true"):
@@ -74,17 +73,20 @@ def light1():
 
         doorbell_value = GPIO.input(11)
 
+        #Musicplayer
         mPlayer = db.reference('MusicPlayer/Busy').get()
         mSong1 = db.reference('MusicPlayer/song').get()
         mPlayerVolume1 = db.reference('MusicPlayer/Volume').get()
+        mPlayerVolume1 = mPlayerVolume1/100
         mSong1 = str(mSong1)+".mp3"
-        if(mPlayer == "True"):
+        if(mPlayer == "true"):
             pygame.mixer.music.load("/home/pi/Music/"+mSong1)
             pygame.mixer.music.play()
             pygame.mixer.music.set_volume(mPlayerVolume1)
             while pygame.mixer.music.get_busy() == True:
                 mPlayer = db.reference('MusicPlayer/Busy').get()
                 mPlayerVolume2 = db.reference('MusicPlayer/Volume').get()
+                mPlayerVolume2 = mPlayerVolume2/100
                 mSong2 = db.reference('MusicPlayer/song').get()
                 mSong2 = str(mSong2)+".mp3"
 
@@ -97,10 +99,10 @@ def light1():
                     pygame.mixer.music.play()
                     mSong1 = mSong2
                     
-                if(mPlayer == "False"):
+                if(mPlayer == "false"):
                     pygame.mixer.music.stop()            
         
-        
+        #Doorbell
         if doorbell_value == 0:
             print("ding dong")
             camera.start_preview()
