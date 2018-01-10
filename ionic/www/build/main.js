@@ -160,10 +160,9 @@ AboutPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-about',template:/*ion-inline-start:"D:\School\Schooljaar 2017-18\semester 1\Web of things\smartHome\src\pages\about\about.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      Gallery\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n      <div class="imgWrapper">\n\n\n\n      </div>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\School\Schooljaar 2017-18\semester 1\Web of things\smartHome\src\pages\about\about.html"*/
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]])
 ], AboutPage);
 
-var _a;
 //# sourceMappingURL=about.js.map
 
 /***/ }),
@@ -360,6 +359,37 @@ var HomePage = (function () {
             ref.update({ freq: data });
         }
     };
+    HomePage.prototype.adjustMusicVolume = function (data) {
+        var database = __WEBPACK_IMPORTED_MODULE_2_firebase___default.a.database();
+        var ref = database.ref("MusicPlayer/");
+        ref.once("value").then(adjustVolume);
+        function adjustVolume() {
+            ref.update({ Volume: data });
+        }
+    };
+    HomePage.prototype.turnOnMusic = function (data) {
+        var database = __WEBPACK_IMPORTED_MODULE_2_firebase___default.a.database();
+        var ref = database.ref("MusicPlayer");
+        ref.once("value").then(toggleMusic);
+        function toggleMusic(data) {
+            var refVal = data.val();
+            var changedVar;
+            //check to see if ligt is of if so give back true
+            (refVal.Busy == "false") ? changedVar = "true" : changedVar = "false";
+            //update the db
+            ref.update({ Busy: changedVar });
+            return;
+        }
+    };
+    HomePage.prototype.changeSong = function (data) {
+        var database = __WEBPACK_IMPORTED_MODULE_2_firebase___default.a.database();
+        console.log(data);
+        var ref = database.ref("MusicPlayer");
+        ref.once("value").then(toggleSong);
+        function toggleSong() {
+            ref.update({ song: data });
+        }
+    };
     HomePage.prototype.ionViewDidEnter = function () {
         var database = __WEBPACK_IMPORTED_MODULE_2_firebase___default.a.database();
         //choose the right firebase table
@@ -382,11 +412,12 @@ var HomePage = (function () {
 }());
 HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-home',template:/*ion-inline-start:"D:\School\Schooljaar 2017-18\semester 1\Web of things\smartHome\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>smartHome</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-item>\n\n      <ion-label>Kitchen light</ion-label>\n\n      <ion-toggle id="lightSlider1" (ionChange)="ChangeLight1()" checked="false"></ion-toggle>\n\n  </ion-item>\n\n  <ion-item>\n\n        <ion-range min="10" max="100" step="10" snaps="true" [(ngModel)]="brightness1" (ionChange)="AdjustBrightness1(brightness1)">\n\n           <ion-icon small range-left name="sunny"></ion-icon>\n\n          <ion-icon range-right name="sunny"></ion-icon>\n\n        </ion-range> \n\n  </ion-item>\n\n  <ion-item>\n\n      <ion-label>Bathroom light</ion-label>\n\n      <ion-toggle id="lightSlider2" (ionChange)="ChangeLight2()" checked="false"></ion-toggle>\n\n  </ion-item>\n\n  <ion-item>\n\n        <ion-range min="10" max="100" step="10" snaps="true" [(ngModel)]="brightness2" (ionChange)="AdjustBrightness2(brightness2)">\n\n           <ion-icon small range-left name="sunny"></ion-icon>\n\n          <ion-icon range-right name="sunny"></ion-icon>\n\n        </ion-range> \n\n  </ion-item>\n\n      <!--<button ion-item (click)=\'DoThething()\'> \n\n      <ion-icon name="camera"></ion-icon>\n\n      click here to take a picture \n\n      </button>-->\n\n      <h1 id="temp"></h1>\n\n      <img id="cameraImg">\n\n</ion-content>\n\n\n\n'/*ion-inline-end:"D:\School\Schooljaar 2017-18\semester 1\Web of things\smartHome\src\pages\home\home.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"D:\School\Schooljaar 2017-18\semester 1\Web of things\smartHome\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>smartHome</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-item>\n\n      <ion-label>Kitchen light</ion-label>\n\n      <ion-toggle id="lightSlider1" (ionChange)="ChangeLight1()" checked="false"></ion-toggle>\n\n  </ion-item>\n\n  <ion-item>\n\n        <ion-range min="10" max="100" step="10" snaps="true" [(ngModel)]="brightness1" (ionChange)="AdjustBrightness1(brightness1)">\n\n           <ion-icon small range-left name="sunny"></ion-icon>\n\n          <ion-icon range-right name="sunny"></ion-icon>\n\n        </ion-range> \n\n  </ion-item>\n\n  <ion-item>\n\n      <ion-label>Bathroom light</ion-label>\n\n      <ion-toggle id="lightSlider2" (ionChange)="ChangeLight2()" checked="false"></ion-toggle>\n\n  </ion-item>\n\n  <ion-item>\n\n        <ion-range min="10" max="100" step="10" snaps="true" [(ngModel)]="brightness2" (ionChange)="AdjustBrightness2(brightness2)">\n\n           <ion-icon small range-left name="sunny"></ion-icon>\n\n          <ion-icon range-right name="sunny"></ion-icon>\n\n        </ion-range> \n\n  </ion-item>\n\n  <ion-item>\n\n      <ion-label>Speakers</ion-label>\n\n      <ion-toggle id="musicSlider" (ionChange)="turnOnMusic()" checked="false"></ion-toggle>\n\n  </ion-item>\n\n  <ion-item>\n\n        <ion-range min="0" max="100" step="10" snaps="true" [(ngModel)]="MusicVolume" (ionChange)="adjustMusicVolume(MusicVolume)">\n\n           <ion-icon small range-left name="volume-down"></ion-icon>\n\n          <ion-icon range-right name="volume-up"></ion-icon>\n\n        </ion-range> \n\n  </ion-item>\n\n\n\n<ion-list radio-group [(ngModel)]="Numbers">\n\n\n\n  <ion-list-header>\n\n    Numbers\n\n  </ion-list-header>\n\n\n\n  <ion-item>\n\n    <ion-label>Ed sheeran Ft queen B - Perfect</ion-label>\n\n    <ion-radio value="1" (ionSelect)="changeSong($event)"></ion-radio>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label>Eminem - River Ft. Ed Sheeran</ion-label>\n\n    <ion-radio value="2" (ionSelect)="changeSong($event)"></ion-radio>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label>Lost Frequencies Ft. Zonderling - Crazy</ion-label>\n\n    <ion-radio value="3" (ionSelect)="changeSong($event)"></ion-radio>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label>Post Malone - rockstar Ft.21 Savage</ion-label>\n\n    <ion-radio value="4" (ionSelect)="changeSong($event)"></ion-radio>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label>Selena Gomez Ft. Marshmello - Wolves</ion-label>\n\n    <ion-radio value="5" (ionSelect)="changeSong($event)"></ion-radio>\n\n  </ion-item>\n\n</ion-list>\n\n      <!--<button ion-item (click)=\'DoThething()\'> \n\n      <ion-icon name="camera"></ion-icon>\n\n      click here to take a picture \n\n      </button>-->\n\n      <h1 id="temp"></h1>\n\n      <img id="cameraImg">\n\n</ion-content>\n\n\n\n'/*ion-inline-end:"D:\School\Schooljaar 2017-18\semester 1\Web of things\smartHome\src\pages\home\home.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]) === "function" && _a || Object])
 ], HomePage);
 
+var _a;
 //# sourceMappingURL=home.js.map
 
 /***/ }),

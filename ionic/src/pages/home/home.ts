@@ -71,6 +71,43 @@ AdjustBrightness2(data) {
       ref.update({ freq: data});
     }
 }
+adjustMusicVolume(data) {
+  let database = firebase.database();
+  let ref = database.ref("MusicPlayer/");
+
+  ref.once("value").then(adjustVolume);
+
+  function adjustVolume() {
+    ref.update({Volume: data});
+  }
+}
+turnOnMusic(data) {
+  let database = firebase.database();
+
+    let ref = database.ref("MusicPlayer");
+    ref.once("value").then(toggleMusic);
+
+    function toggleMusic(data) {
+      let refVal = data.val();
+      let changedVar;
+      //check to see if ligt is of if so give back true
+      (refVal.Busy == "false") ? changedVar = "true" : changedVar = "false";
+
+      //update the db
+      ref.update({ Busy: changedVar });
+      return;
+      }
+}
+changeSong(data) {
+  let database = firebase.database();
+  console.log(data);
+  let ref = database.ref("MusicPlayer");
+    ref.once("value").then(toggleSong);
+
+    function toggleSong() {
+          ref.update({song: data});
+    }
+}
   ionViewDidEnter(){
     let database = firebase.database();
     //choose the right firebase table

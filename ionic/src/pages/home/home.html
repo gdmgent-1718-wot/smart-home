@@ -25,6 +25,48 @@
           <ion-icon range-right name="sunny"></ion-icon>
         </ion-range> 
   </ion-item>
+  <ion-item>
+      <ion-label>Speakers</ion-label>
+      <ion-toggle id="musicSlider" (ionChange)="turnOnMusic()" checked="false"></ion-toggle>
+  </ion-item>
+  <ion-item>
+        <ion-range min="0" max="100" step="10" snaps="true" [(ngModel)]="MusicVolume" (ionChange)="adjustMusicVolume(MusicVolume)">
+           <ion-icon small range-left name="volume-down"></ion-icon>
+          <ion-icon range-right name="volume-up"></ion-icon>
+        </ion-range> 
+  </ion-item>
+
+<ion-list radio-group [(ngModel)]="Numbers">
+
+  <ion-list-header>
+    Numbers
+  </ion-list-header>
+
+  <ion-item>
+    <ion-label>Ed sheeran Ft queen B - Perfect</ion-label>
+    <ion-radio value="1" (ionSelect)="changeSong($event)"></ion-radio>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Eminem - River Ft. Ed Sheeran</ion-label>
+    <ion-radio value="2" (ionSelect)="changeSong($event)"></ion-radio>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Lost Frequencies Ft. Zonderling - Crazy</ion-label>
+    <ion-radio value="3" (ionSelect)="changeSong($event)"></ion-radio>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Post Malone - rockstar Ft.21 Savage</ion-label>
+    <ion-radio value="4" (ionSelect)="changeSong($event)"></ion-radio>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Selena Gomez Ft. Marshmello - Wolves</ion-label>
+    <ion-radio value="5" (ionSelect)="changeSong($event)"></ion-radio>
+  </ion-item>
+</ion-list>
       <!--<button ion-item (click)='DoThething()'> 
       <ion-icon name="camera"></ion-icon>
       click here to take a picture 
