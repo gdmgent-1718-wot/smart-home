@@ -4,6 +4,7 @@ import time
 import datetime
 import json
 import RPi.GPIO as GPIO
+import pygame
 from firebase import firebase
 from firebase_admin import credentials
 from firebase_admin import db
@@ -12,11 +13,17 @@ from threading import Thread
 from picamera import PiCamera
 from google.cloud import storage
 
+
 #enable google cloud Storage & ref to an existing bucket
 bucket = storage.Client().get_bucket('smarthome-6b170.appspot.com')
 
 camera = PiCamera()
 camera.resolution = (500,500)
+
+#music player
+pygame.mixer.init()
+
+
 
 #function to calculate cpu_temperature
 def get_cpu_temp():
@@ -66,10 +73,36 @@ def light1():
             t.ChangeDutyCycle(0)
 
         doorbell_value = GPIO.input(11)
+
+        mPlayer = db.reference('MusicPlayer/Busy').get()
+        mSong1 = db.reference('MusicPlayer/song').get()
+        mPlayerVolume1 = db.reference('MusicPlayer/Volume').get()
+        mSong1 = str(mSong1)+".mp3"
+        if(mPlayer == "True"):
+            pygame.mixer.music.load("/home/pi/Music/"+mSong1)
+            pygame.mixer.music.play()
+            pygame.mixer.music.set_volume(mPlayerVolume1)
+            while pygame.mixer.music.get_busy() == True:
+                mPlayer = db.reference('MusicPlayer/Busy').get()
+                mPlayerVolume2 = db.reference('MusicPlayer/Volume').get()
+                mSong2 = db.reference('MusicPlayer/song').get()
+                mSong2 = str(mSong2)+".mp3"
+
+                if(mPlayerVolume1 != mPlayerVolume2):
+                    pygame.mixer.music.set_volume(mPlayerVolume2)
+                    mPlayerVolume1 = mPlayerVolume2
+                
+                if(mSong1 != mSong2):
+                    pygame.mixer.music.load("/home/pi/Music/"+mSong2)
+                    pygame.mixer.music.play()
+                    mSong1 = mSong2
+                    
+                if(mPlayer == "False"):
+                    pygame.mixer.music.stop()            
+        
         
         if doorbell_value == 0:
-            print(doorbell_value)
-            print('ding dong')
+            print("ding dong")
             camera.start_preview()
             time.sleep(1)
             Date_Time = str(datetime.datetime.now())
