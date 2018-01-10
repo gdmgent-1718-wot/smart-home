@@ -112,10 +112,23 @@ var AboutPage = (function () {
             // Get the download URL
             refImageMeta.once("value", function (snapshot) {
                 //loop through every image  
-                //TODO: put all the URL's in an array and arrange per date for correct display + find a solution for foreach problem
+                //TODO: find a solution for foreach problem
                 snapshot.forEach(function (child) {
                     console.log(child.val());
-                    var ImgUrl = refImg.child(child.val());
+                    imageUrlArray.push(child.val());
+                });
+                //sort array per date
+                var date_sort_desc = function (date1, date2) {
+                    if (date1 > date2)
+                        return -1;
+                    if (date1 < date2)
+                        return 1;
+                    return 0;
+                };
+                imageUrlArray.sort(date_sort_desc);
+                //loop trough array + append images to body
+                imageUrlArray.forEach(function (child) {
+                    var ImgUrl = refImg.child(child);
                     ImgUrl.getDownloadURL().then(function (url) {
                         var newImg = document.createElement("img");
                         newImg.setAttribute("src", url);
@@ -147,9 +160,10 @@ AboutPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-about',template:/*ion-inline-start:"D:\School\Schooljaar 2017-18\semester 1\Web of things\smartHome\src\pages\about\about.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      Gallery\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n      <div class="imgWrapper">\n\n\n\n      </div>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\School\Schooljaar 2017-18\semester 1\Web of things\smartHome\src\pages\about\about.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]) === "function" && _a || Object])
 ], AboutPage);
 
+var _a;
 //# sourceMappingURL=about.js.map
 
 /***/ }),
@@ -265,10 +279,9 @@ ContactPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-contact',template:/*ion-inline-start:"D:\School\Schooljaar 2017-18\semester 1\Web of things\smartHome\src\pages\contact\contact.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      Live feed\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n  <ion-item>\n\n    <textarea id="yourId"></textarea>\n\n     <video id="livestream" autoplay width="100%"></video>\n\n     <video id="remoteStream" autoplay width="100%"></video>\n\n  </ion-item>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\School\Schooljaar 2017-18\semester 1\Web of things\smartHome\src\pages\contact\contact.html"*/
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]])
 ], ContactPage);
 
-var _a;
 //# sourceMappingURL=contact.js.map
 
 /***/ }),
@@ -371,10 +384,9 @@ HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-home',template:/*ion-inline-start:"D:\School\Schooljaar 2017-18\semester 1\Web of things\smartHome\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>smartHome</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-item>\n\n      <ion-label>Kitchen light</ion-label>\n\n      <ion-toggle id="lightSlider1" (ionChange)="ChangeLight1()" checked="false"></ion-toggle>\n\n  </ion-item>\n\n  <ion-item>\n\n        <ion-range min="10" max="100" step="10" snaps="true" [(ngModel)]="brightness1" (ionChange)="AdjustBrightness1(brightness1)">\n\n           <ion-icon small range-left name="sunny"></ion-icon>\n\n          <ion-icon range-right name="sunny"></ion-icon>\n\n        </ion-range> \n\n  </ion-item>\n\n  <ion-item>\n\n      <ion-label>Bathroom light</ion-label>\n\n      <ion-toggle id="lightSlider2" (ionChange)="ChangeLight2()" checked="false"></ion-toggle>\n\n  </ion-item>\n\n  <ion-item>\n\n        <ion-range min="10" max="100" step="10" snaps="true" [(ngModel)]="brightness2" (ionChange)="AdjustBrightness2(brightness2)">\n\n           <ion-icon small range-left name="sunny"></ion-icon>\n\n          <ion-icon range-right name="sunny"></ion-icon>\n\n        </ion-range> \n\n  </ion-item>\n\n      <!--<button ion-item (click)=\'DoThething()\'> \n\n      <ion-icon name="camera"></ion-icon>\n\n      click here to take a picture \n\n      </button>-->\n\n      <h1 id="temp"></h1>\n\n      <img id="cameraImg">\n\n</ion-content>\n\n\n\n'/*ion-inline-end:"D:\School\Schooljaar 2017-18\semester 1\Web of things\smartHome\src\pages\home\home.html"*/
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]])
 ], HomePage);
 
-var _a;
 //# sourceMappingURL=home.js.map
 
 /***/ }),
