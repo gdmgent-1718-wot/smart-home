@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 146:
+/***/ 155:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -13,11 +13,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 146;
+webpackEmptyAsyncContext.id = 155;
 
 /***/ }),
 
-/***/ 187:
+/***/ 196:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -30,19 +30,19 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 187;
+webpackEmptyAsyncContext.id = 196;
 
 /***/ }),
 
-/***/ 231:
+/***/ 239:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__about_about__ = __webpack_require__(232);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__contact_contact__ = __webpack_require__(272);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__about_about__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__contact_contact__ = __webpack_require__(279);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(286);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -74,14 +74,14 @@ TabsPage = __decorate([
 
 /***/ }),
 
-/***/ 232:
+/***/ 240:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AboutPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -108,8 +108,11 @@ var AboutPage = (function () {
             // Create a reference to the file we want to download
             var refImg = storageRef.ref('/Doorbell');
             var refImageMeta = rootref.child("ImageMeta/");
+            var imageUrlArray = [];
             // Get the download URL
             refImageMeta.once("value", function (snapshot) {
+                //loop through every image  
+                //TODO: put all the URL's in an array and arrange per date for correct display + find a solution for foreach problem
                 snapshot.forEach(function (child) {
                     console.log(child.val());
                     var ImgUrl = refImg.child(child.val());
@@ -136,24 +139,6 @@ var AboutPage = (function () {
                     });
                 });
             });
-            // refImg.getDownloadURL().then(function(url) {
-            //   document.getElementById("cameraImg").setAttribute('src', url);
-            // }).catch(function(error) {
-            //   switch (error.code) {
-            //     case 'storage/object_not_found':
-            //       // File doesn't exist
-            //       break;
-            //     case 'storage/unauthorized':
-            //       // User doesn't have permission to access the object
-            //       break;
-            //     case 'storage/canceled':
-            //       // User canceled the upload
-            //       break;
-            //     case 'storage/unknown':
-            //       // Unknown error occurred, inspect the server response
-            //       break;
-            //   }
-            // });
         }
     };
     return AboutPage;
@@ -169,13 +154,17 @@ AboutPage = __decorate([
 
 /***/ }),
 
-/***/ 272:
+/***/ 279:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContactPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_simple_peer__ = __webpack_require__(438);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_simple_peer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_simple_peer__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -187,33 +176,111 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
+// import firebase from 'firebase';
 var ContactPage = (function () {
     function ContactPage(navCtrl) {
         this.navCtrl = navCtrl;
     }
     ContactPage.prototype.ionViewDidEnter = function () {
+        var database = __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.database();
+        var ownIdRef = database.ref("stream/");
+        var otherIdRef = database.ref("stream/RaspberryId");
+        var otherId;
+        otherIdRef.once("value").then(assignValue);
+        function assignValue(data) {
+            otherId = data.val();
+        }
+        var peer = new __WEBPACK_IMPORTED_MODULE_2_simple_peer___default.a({
+            initiator: location.hash === '',
+            trickle: false
+        });
+        peer.on('signal', function (data) {
+            document.getElementById("yourId").setAttribute("value", JSON.stringify(data));
+            ownIdRef.update({ userId: JSON.stringify(data) });
+            try {
+                peer.signal(otherId);
+            }
+            catch (err) {
+                alert("your Raspberry is not on " + err);
+            }
+        });
+        peer.on('stream', function (stream) {
+            var video = document.getElementById("livestream").setAttribute("src", window.URL.createObjectURL(stream));
+        });
+        // var localStream = document.getElementById('livestream');
+        // var remoteStream = document.getElementById('remoteStream');
+        // var pc1;
+        // var pc2;
+        // var config = {'iceServers': [{'url': 'stun:stun.services.mozilla.com'}, {'url': 'stun:stun.l.google.com:19302'}]};
+        // var vendorURL = window.URL;
+        // var offerOptions = {
+        //   offerToReceiveAudio: 1,
+        //   offerToReceiveVideo: 1
+        // };
+        // pc1 = new RTCPeerConnection(config);
+        // pc1.onicecandidate = function(e) {
+        //   onIceCandidate(pc2,e);
+        // };     
+        // pc1.createOffer(offerOptions)
+        // .then(
+        //   gotDescription
+        // );
+        // pc1.onicecandidate = gotIceCandidate;
+        // pc1.onaddstream = gotRemoteStream;
+        // function gotDescription(description) {
+        //     pc1.setRemoteDescription(description)
+        //     .then(
+        //       console.trace('setLocalDescription complete')
+        //     )
+        // }
+        // function onIceCandidate(pc, event) {
+        //   pc.addIceCandidate(event.candidate)
+        //   .then(function() {
+        //     console.log("candidate added");
+        //   })
+        // }
+        // function gotIceCandidate(event) {
+        //     if(event.candidate != null) {
+        //         pc1.send(JSON.stringify({'ice': event.candidate}));
+        //     }
+        // }
+        // function gotRemoteStream(event) {
+        //   remoteStream.setAttribute("src",vendorURL.createObjectURL(event.stream));
+        // }
+        // // navigator.getUserMedia({
+        // //   audio: true, 
+        // //   video: true
+        // // }, function(stream) {
+        // //     pc1.addStream(stream);
+        // //     localStream.setAttribute("src", vendorURL.createObjectURL(stream));
+        // // }, function(err) {
+        // //   console.log('getUserMedia error' + err);
+        // // })
     };
     return ContactPage;
 }());
 ContactPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-contact',template:/*ion-inline-start:"D:\School\Schooljaar 2017-18\semester 1\Web of things\smartHome\src\pages\contact\contact.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      Live feed\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n  <ion-item>\n\n    \n\n  </ion-item>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\School\Schooljaar 2017-18\semester 1\Web of things\smartHome\src\pages\contact\contact.html"*/
+        selector: 'page-contact',template:/*ion-inline-start:"D:\School\Schooljaar 2017-18\semester 1\Web of things\smartHome\src\pages\contact\contact.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      Live feed\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n  <ion-item>\n\n    <textarea id="yourId"></textarea>\n\n     <video id="livestream" autoplay width="100%"></video>\n\n     <video id="remoteStream" autoplay width="100%"></video>\n\n  </ion-item>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\School\Schooljaar 2017-18\semester 1\Web of things\smartHome\src\pages\contact\contact.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]) === "function" && _a || Object])
 ], ContactPage);
 
+var _a;
 //# sourceMappingURL=contact.js.map
 
 /***/ }),
 
-/***/ 273:
+/***/ 286:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -226,6 +293,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+// import { Push, PushObject, PushOptions} from "@ionic-native/push"
 
 var HomePage = (function () {
     function HomePage(navCtrl) {
@@ -281,7 +349,6 @@ var HomePage = (function () {
     };
     HomePage.prototype.ionViewDidEnter = function () {
         var database = __WEBPACK_IMPORTED_MODULE_2_firebase___default.a.database();
-        var storageRef = __WEBPACK_IMPORTED_MODULE_2_firebase___default.a.storage();
         //choose the right firebase table
         var alertRef = database.ref("Alert/");
         //make the functions execute once
@@ -289,7 +356,6 @@ var HomePage = (function () {
         function pushAlert(data) {
             //get a pushnotification to tell the user that their is somebody at the door
             var alertVal = data.val();
-            console.log(data.val());
             if (alertVal.on == "true") {
                 alert("someone's at the door");
                 alertRef.update({ on: "false" });
@@ -297,20 +363,6 @@ var HomePage = (function () {
         }
         function errData() {
             console.log("error");
-        }
-    };
-    HomePage.prototype.DoThething = function () {
-        var database = __WEBPACK_IMPORTED_MODULE_2_firebase___default.a.database();
-        var storageRef = __WEBPACK_IMPORTED_MODULE_2_firebase___default.a.storage();
-        //choose the right firebase table
-        var alertRef = database.ref("Alert/");
-        //make the functions execute once
-        alertRef.once("value").then(sendRequest).then(function () {
-            //get a pushnotification to tell the user that their is somebody at the door
-        });
-        function sendRequest(data) {
-            //set the camera on through firebase
-            alertRef.update({ on: "false" });
         }
     };
     return HomePage;
@@ -327,13 +379,13 @@ var _a;
 
 /***/ }),
 
-/***/ 274:
+/***/ 287:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(275);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(293);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(306);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -341,27 +393,29 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 293:
+/***/ 306:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(334);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_about_about__ = __webpack_require__(232);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_contact_contact__ = __webpack_require__(272);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(273);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_tabs_tabs__ = __webpack_require__(231);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_status_bar__ = __webpack_require__(227);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_splash_screen__ = __webpack_require__(230);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(347);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_about_about__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_contact_contact__ = __webpack_require__(279);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_tabs_tabs__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_push__ = __webpack_require__(451);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_status_bar__ = __webpack_require__(236);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_splash_screen__ = __webpack_require__(238);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -401,8 +455,9 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_7__pages_tabs_tabs__["a" /* TabsPage */]
         ],
         providers: [
-            __WEBPACK_IMPORTED_MODULE_8__ionic_native_status_bar__["a" /* StatusBar */],
-            __WEBPACK_IMPORTED_MODULE_9__ionic_native_splash_screen__["a" /* SplashScreen */],
+            __WEBPACK_IMPORTED_MODULE_8__ionic_native_push__["a" /* Push */],
+            __WEBPACK_IMPORTED_MODULE_9__ionic_native_status_bar__["a" /* StatusBar */],
+            __WEBPACK_IMPORTED_MODULE_10__ionic_native_splash_screen__["a" /* SplashScreen */],
             { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicErrorHandler */] }
         ]
     })
@@ -412,17 +467,17 @@ AppModule = __decorate([
 
 /***/ }),
 
-/***/ 334:
+/***/ 347:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(227);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(230);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_tabs_tabs__ = __webpack_require__(231);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(236);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(238);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_tabs_tabs__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -470,5 +525,5 @@ MyApp = __decorate([
 
 /***/ })
 
-},[274]);
+},[287]);
 //# sourceMappingURL=main.js.map

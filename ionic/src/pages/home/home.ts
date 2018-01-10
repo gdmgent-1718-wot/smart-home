@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+// import { Push, PushObject, PushOptions} from "@ionic-native/push"
 import firebase from 'firebase';
 
 @Component({
@@ -72,7 +73,6 @@ AdjustBrightness2(data) {
 }
   ionViewDidEnter(){
     let database = firebase.database();
-    let storageRef = firebase.storage();
     //choose the right firebase table
     let alertRef = database.ref("Alert/");
     //make the functions execute once
@@ -81,7 +81,6 @@ AdjustBrightness2(data) {
     function pushAlert(data){
       //get a pushnotification to tell the user that their is somebody at the door
       let alertVal = data.val();
-      console.log(data.val());
       if (alertVal.on == "true") {
         alert("someone's at the door");
         alertRef.update({ on: "false"});
@@ -92,20 +91,4 @@ AdjustBrightness2(data) {
       console.log("error");
     }
   } 
-  DoThething() {
-    let database = firebase.database();
-    let storageRef = firebase.storage();
-    //choose the right firebase table
-    let alertRef = database.ref("Alert/");
-    //make the functions execute once
-    alertRef.once("value").then(sendRequest).then(function(){
-      //get a pushnotification to tell the user that their is somebody at the door
-    });
-
-    function sendRequest(data) {
-      //set the camera on through firebase
-      alertRef.update({ on: "false"});
-    }
-  }
-
 }

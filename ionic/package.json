@@ -21,6 +21,7 @@
     "@angular/platform-browser": "4.4.3",
     "@angular/platform-browser-dynamic": "4.4.3",
     "@ionic-native/core": "4.3.0",
+    "@ionic-native/push": "^4.5.2",
     "@ionic-native/splash-screen": "4.3.0",
     "@ionic-native/status-bar": "4.3.0",
     "@ionic/storage": "2.0.1",
@@ -37,8 +38,9 @@
     "ng2-firebase": "^1.0.0",
     "phonegap-plugin-push": "^2.1.2",
     "rxjs": "5.4.3",
-    "simple-peer": "^8.1.1",
+    "simple-peer": "^8.2.0",
     "sw-toolbox": "3.6.0",
+    "webrtc-adapter": "^6.0.3",
     "zone.js": "0.8.18"
   },
   "devDependencies": {
@@ -58,6 +60,11 @@
     "platforms": [
       "ios",
       "android"
+    ],
+    "cordovaPlugins": [
+      {
+        "locator": "phonegap-plugin-push"
+      }
     ]
   }
 }
