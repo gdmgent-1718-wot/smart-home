@@ -46,7 +46,9 @@ Smart Home | Web Of Things | Artevelde University College Ghent
  sudo pip3 install python-firebase
  sudo pip3 install firebase-admin
 ```
-!! Your time has to be set right otherwise it won't work !! \s\s
+!! Your time has to be set right otherwise it won't work !!
+
+
 Without internet:
 ```
 sudo date -s "Sat Sept 23 19:21:11 UTC 2017"
