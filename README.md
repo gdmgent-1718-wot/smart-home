@@ -2,10 +2,10 @@
 Smart Home | Web Of Things | Artevelde University College Ghent
 
 # Authors
-<img src="https://avatars0.githubusercontent.com/u/22441665?s=400&u=17e9c0ac9c9e32a54a6db22f3bed0ea641c240e5&v=4" alt="Brent De Roeck" width="174" height"174">
-<img src="https://avatars0.githubusercontent.com/u/22441709?s=460&v=4" alt="Pieter Vleminck" width="174">
 [Brent De Roeck](https://github.com/brendero)
+<img src="https://avatars2.githubusercontent.com/u/22441665?s=460&v=4" alt="Brent De Roeck" width="174">
 [Pieter Vleminck](https://github.com/PietVlem)
+<img src="https://avatars0.githubusercontent.com/u/22441709?s=460&v=4" alt="Pieter Vleminck" width="174">
 
 ## Needed Parts
 - Raspberry Pi 3 
@@ -46,7 +46,7 @@ Smart Home | Web Of Things | Artevelde University College Ghent
  sudo pip3 install python-firebase
  sudo pip3 install firebase-admin
 ```
-!! Your time has to be set right otherwise it won't work !!
+!! Your time has to be set right otherwise it won't work !! \s\s
 Without internet:
 ```
 sudo date -s "Sat Sept 23 19:21:11 UTC 2017"
@@ -75,4 +75,15 @@ Documentation: [pygame mixer music - https://www.pygame.org/docs/ref/music.html]
 ```
 sudo python3 SmartHome.py
 ```
+
+#### Additional info
+if gloud gives an error on startup try: 
+```
+export GCLOUD_PROJECT=my-project-1234
+```
+change my-project-1234 with your firebase project-id
+
+GPIO scheme:
+
+![GPIO Board](./Pi/GPIO.png)
 
