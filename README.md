@@ -1,10 +1,11 @@
 # Smart-home
 Smart Home | Web Of Things | Artevelde University College Ghent
 
+![Opstelling van project](opstelling.png)
 # Authors
-[Brent De Roeck](https://github.com/brendero)
+[Brent De Roeck](https://github.com/brendero) <br/>
 <img src="https://avatars2.githubusercontent.com/u/22441665?s=460&v=4" alt="Brent De Roeck" width="174">
-[Pieter Vleminck](https://github.com/PietVlem)
+[Pieter Vleminck](https://github.com/PietVlem) <br/>
 <img src="https://avatars0.githubusercontent.com/u/22441709?s=460&v=4" alt="Pieter Vleminck" width="174">
 
 ## Needed Parts
