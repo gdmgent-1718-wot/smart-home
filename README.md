@@ -6,8 +6,8 @@ Smart Home | Web Of Things | Artevelde University College Ghent
 [Brent De Roeck](https://github.com/brendero) <br/>
 <img src="https://avatars2.githubusercontent.com/u/22441665?s=460&v=4" alt="Brent De Roeck" width="174"> <br/>
 <br/>
-[Pieter Vleminck](https://github.com/PietVlem) <br/>
-<img src="https://avatars0.githubusercontent.com/u/22441709?s=460&v=4" alt="Pieter Vleminck" width="174">
+[Pieter Vleminckx](https://github.com/PietVlem) <br/>
+<img src="https://avatars0.githubusercontent.com/u/22441709?s=460&v=4" alt="Pieter Vleminckx" width="174">
 
 ## Needed Parts
 - Raspberry Pi 3 
