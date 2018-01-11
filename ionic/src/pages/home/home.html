@@ -1,77 +1,30 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>smartHome</ion-title>
+    <ion-title>Lights</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-item>
       <ion-label>Kitchen light</ion-label>
-      <ion-toggle id="lightSlider1" (ionChange)="ChangeLight1()" checked="false"></ion-toggle>
+      <ion-toggle id="lightSlider1" (ionChange)="ChangeLight(1)" checked="false"></ion-toggle>
   </ion-item>
   <ion-item>
-        <ion-range min="10" max="100" step="10" snaps="true" [(ngModel)]="brightness1" (ionChange)="AdjustBrightness1(brightness1)">
+        <ion-range min="10" max="100" step="10" snaps="true" [(ngModel)]="brightness1" (ionChange)="AdjustBrightness(1,brightness1)">
            <ion-icon small range-left name="sunny"></ion-icon>
           <ion-icon range-right name="sunny"></ion-icon>
         </ion-range> 
   </ion-item>
   <ion-item>
       <ion-label>Bathroom light</ion-label>
-      <ion-toggle id="lightSlider2" (ionChange)="ChangeLight2()" checked="false"></ion-toggle>
+      <ion-toggle id="lightSlider2" (ionChange)="ChangeLight(2)" checked="false"></ion-toggle>
   </ion-item>
   <ion-item>
-        <ion-range min="10" max="100" step="10" snaps="true" [(ngModel)]="brightness2" (ionChange)="AdjustBrightness2(brightness2)">
+        <ion-range min="10" max="100" step="10" snaps="true" [(ngModel)]="brightness2" (ionChange)="AdjustBrightness(2,brightness2)">
            <ion-icon small range-left name="sunny"></ion-icon>
           <ion-icon range-right name="sunny"></ion-icon>
         </ion-range> 
   </ion-item>
-  <ion-item>
-      <ion-label>Speakers</ion-label>
-      <ion-toggle id="musicSlider" (ionChange)="turnOnMusic()" checked="false"></ion-toggle>
-  </ion-item>
-  <ion-item>
-        <ion-range min="0" max="100" step="10" snaps="true" [(ngModel)]="MusicVolume" (ionChange)="adjustMusicVolume(MusicVolume)">
-           <ion-icon small range-left name="volume-down"></ion-icon>
-          <ion-icon range-right name="volume-up"></ion-icon>
-        </ion-range> 
-  </ion-item>
-
-<ion-list radio-group [(ngModel)]="Numbers">
-
-  <ion-list-header>
-    Numbers
-  </ion-list-header>
-
-  <ion-item>
-    <ion-label>Ed sheeran Ft queen B - Perfect</ion-label>
-    <ion-radio value="1" (ionSelect)="changeSong($event)"></ion-radio>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Eminem - River Ft. Ed Sheeran</ion-label>
-    <ion-radio value="2" (ionSelect)="changeSong($event)"></ion-radio>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Lost Frequencies Ft. Zonderling - Crazy</ion-label>
-    <ion-radio value="3" (ionSelect)="changeSong($event)"></ion-radio>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Post Malone - rockstar Ft.21 Savage</ion-label>
-    <ion-radio value="4" (ionSelect)="changeSong($event)"></ion-radio>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Selena Gomez Ft. Marshmello - Wolves</ion-label>
-    <ion-radio value="5" (ionSelect)="changeSong($event)"></ion-radio>
-  </ion-item>
-</ion-list>
-      <!--<button ion-item (click)='DoThething()'> 
-      <ion-icon name="camera"></ion-icon>
-      click here to take a picture 
-      </button>-->
-      <h1 id="temp"></h1>
-      <img id="cameraImg">
+       <img id="cameraImg">
 </ion-content>
 

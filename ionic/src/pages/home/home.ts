@@ -8,40 +8,25 @@ import firebase from 'firebase';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  temp = 0;
   brightness2 = {
-      title : ''
-    }
+    title: ''
+  }
   constructor(public navCtrl: NavController) {
   }
 
-  ChangeLight1(){
+  ChangeLight(num) {
+    //connect to the firebase database
     let database = firebase.database();
+    //choose the right table in your firebase database based on the num parameter to know which light it is
+    let ref = database.ref("Lights/Light"+num);
+    //execute the toggleLight function once when you get a value back from firebase
+    ref.once("value").then(toggleLight);
 
-    let ref = database.ref("Lights/Light1");
-    ref.once("value").then(Light1);
-
-    function Light1(data) {
+    function toggleLight(data) {
+      //get the value in the data snapshot
       let refVal = data.val();
       let changedVar;
-      //check to see if ligt is of if so give back true
-      (refVal.on == "false") ? changedVar = "true" : changedVar = "false";
-
-      //update the db
-      ref.update({ on: changedVar });
-      return;
-    }    
-  }
-  ChangeLight2() {
-    let database = firebase.database();
-
-    let ref = database.ref("Lights/Light2");
-    ref.once("value").then(Light2);
-
-    function Light2(data) {
-      let refVal = data.val();
-      let changedVar;
-      //check to see if ligt is of if so give back true
+      //check to see if light is off if so give back true
       (refVal.on == "false") ? changedVar = "true" : changedVar = "false";
 
       //update the db
@@ -49,83 +34,42 @@ export class HomePage {
       return;
     }
   }
-
-AdjustBrightness1(data) {
-    let database = firebase.database();
-
-    let ref = database.ref("Lights/Light1");
-    ref.once("value").then(AdjustBrightness);
-
-    function AdjustBrightness() {
-      ref.update({ freq: data});
-    }
-}
-AdjustBrightness2(data) {
   
+  //function to adjust brightness level of lamps
+  AdjustBrightness(num,data) {
+    //connect to the firebase database
     let database = firebase.database();
-
-    let ref = database.ref("Lights/Light2");
+    //choose the right table in your firebase database based on the num parameter to know which light it is
+    let ref = database.ref("Lights/Light"+num);
+    //execute the AdjustBrightness function once when you get a value back from firebase
     ref.once("value").then(AdjustBrightness);
 
     function AdjustBrightness() {
-      ref.update({ freq: data});
+      //update the freq table of your light with the data returned from slider
+      ref.update({ freq: data });
     }
-}
-adjustMusicVolume(data) {
-  let database = firebase.database();
-  let ref = database.ref("MusicPlayer/");
-
-  ref.once("value").then(adjustVolume);
-
-  function adjustVolume() {
-    ref.update({Volume: data});
   }
-}
-turnOnMusic(data) {
-  let database = firebase.database();
 
-    let ref = database.ref("MusicPlayer");
-    ref.once("value").then(toggleMusic);
-
-    function toggleMusic(data) {
-      let refVal = data.val();
-      let changedVar;
-      //check to see if ligt is of if so give back true
-      (refVal.Busy == "false") ? changedVar = "true" : changedVar = "false";
-
-      //update the db
-      ref.update({ Busy: changedVar });
-      return;
-      }
-}
-changeSong(data) {
-  let database = firebase.database();
-  console.log(data);
-  let ref = database.ref("MusicPlayer");
-    ref.once("value").then(toggleSong);
-
-    function toggleSong() {
-          ref.update({song: data});
-    }
-}
-  ionViewDidEnter(){
+  ionViewDidEnter() {
     let database = firebase.database();
     //choose the right firebase table
     let alertRef = database.ref("Alert/");
     //make the functions execute once
     alertRef.on("value", pushAlert, errData);
-
-    function pushAlert(data){
+    
+    function pushAlert(data) {
       //get a pushnotification to tell the user that their is somebody at the door
       let alertVal = data.val();
+      //check to see if their is somebody at the door
       if (alertVal.on == "true") {
-        alert("someone's at the door");
-        alertRef.update({ on: "false"});
+        alert("Someone at the door");
+        //change the alert to false to notify that the user has seen the alert
+        alertRef.update({ on: "false" });
       }
     }
 
     function errData() {
       console.log("error");
     }
-  } 
+  }
 }

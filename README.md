@@ -1,6 +1,11 @@
 # smart-home
 Smart Home | Web Of Things | Artevelde University College Ghent
 
+# Authors
+<img src="https://avatars0.githubusercontent.com/u/22441665?s=400&u=17e9c0ac9c9e32a54a6db22f3bed0ea641c240e5&v=4" alt="Brent De Roeck" width="174" height"174">
+<img src="https://avatars0.githubusercontent.com/u/22441709?s=460&v=4" alt="Pieter Vleminck" width="174">
+[Brent De Roeck](https://github.com/brendero)
+[Pieter Vleminck](https://github.com/PietVlem)
 ## Needed Parts
 - Raspberry Pi 3 
 - Raspberry Pi Camera
@@ -26,7 +31,7 @@ Smart Home | Web Of Things | Artevelde University College Ghent
 ```
 
 ###### Ps: Be awere that this is not secure at all || Also : Don't forget to link your firebase in your ionic app.
-##Raspberry installations
+## Raspberry installations
 ### Installing firebase
 ```
  sudo pip3 install python-firebase

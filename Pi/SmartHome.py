@@ -22,22 +22,12 @@ camera.resolution = (500,500)
 #music player
 pygame.mixer.init()
 
-
-#function to calculate cpu_temperature
-def get_cpu_temp():
-    res = os.popen("vcgencmd measure_temp").readline()
-    t = float(res.replace("temp=","").replace("'C\n",""))
-    return(t)
-
 #cred for firebase
 cred = credentials.Certificate('smarthome-6b170-firebase-adminsdk-yg2v8-e84c1076ff.json')
 
 default_app = firebase_admin.initialize_app(cred,{
     'databaseURL': 'https://smarthome-6b170.firebaseio.com'
     })
-
-Tempdb = db.reference().child('Temperature')
-cameraUpdate = db.reference().child('Camera')
 
 GPIO.setwarnings(False)
 
