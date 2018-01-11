@@ -28,8 +28,8 @@ Smart Home | Web Of Things | Artevelde University College Ghent
 ```
 
 ###### Ps: Be awere that this is not secure at all || Also : Don't forget to link your firebase in your ionic app.
-##Raspberry installations
-##### ALWAYS UPDATE YOUR SYSTEM FIRST
+## Raspberry installations
+### ALWAYS UPDATE YOUR SYSTEM FIRST
 ```
  sudo apt-get update
  sudo apt-get upgrade
@@ -54,6 +54,6 @@ sudo apt-get install pip
 sudo pip install pygame
 ```
 
-##To start the python project
+## To start the python project
 `sudo python3 SmartHome.py`
 
