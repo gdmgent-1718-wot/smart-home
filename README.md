@@ -9,6 +9,8 @@ Smart Home | Web Of Things | Artevelde University College Ghent
 - Button
 - T-cobbler
 
+## Ionic application
+
 ### Installing ionic
 * `npm install -g cordova ionic`
 * starting app: `ionic serve`
@@ -27,6 +29,12 @@ Smart Home | Web Of Things | Artevelde University College Ghent
 
 ###### Ps: Be awere that this is not secure at all || Also : Don't forget to link your firebase in your ionic app.
 ##Raspberry installations
+##### ALWAYS UPDATE YOUR SYSTEM FIRST
+```
+ sudo apt-get update
+ sudo apt-get upgrade
+```
+
 ### Installing firebase
 ```
  sudo pip3 install python-firebase
@@ -40,5 +48,12 @@ sudo apt-get install google-cloud-sdk
 gcloud auth application-default login
 ```
 
+### Pygame (music)
+```
+sudo apt-get install pip
+sudo pip install pygame
+```
+
 ##To start the python project
 `sudo python3 SmartHome.py`
+
