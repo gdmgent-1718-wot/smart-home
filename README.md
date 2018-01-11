@@ -41,6 +41,7 @@ Smart Home | Web Of Things | Artevelde University College Ghent
  sudo pip3 install firebase-admin
 ```
 ##### your time has to be set right otherwise it won't work
+
 ### Installing Google cloud:
 ```
 sudo pip3 install google-cloud
@@ -53,7 +54,8 @@ gcloud auth application-default login
 sudo apt-get install pip
 sudo pip install pygame
 ```
+documentation: [pygame mixer music - https://www.pygame.org/docs/ref/music.html](https://www.pygame.org/docs/ref/music.html)
 
-## To start the python project
+### To start the python project
 `sudo python3 SmartHome.py`
 
